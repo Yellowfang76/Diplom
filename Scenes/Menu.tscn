@@ -1,0 +1,380 @@
+[gd_scene load_steps=21 format=2]
+
+[ext_resource path="res://Fonts/MenuFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Fonts/RuneScape-ENA.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Scenes/Menu.py" type="Script" id=3]
+[ext_resource path="res://Assets/Menu/Coin.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Menu/BG.png" type="Texture" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+size = 48
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 48
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 72
+font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.376471, 0.376471, 0.376471, 1 )
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+shadow_color = Color( 0.12549, 0.12549, 0.12549, 0.6 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 72
+font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0.403922, 0.254902, 0.254902, 1 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="DynamicFont" id=7]
+size = 38
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 48
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 38
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=10]
+size = 38
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=11]
+size = 48
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=12]
+size = 38
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=13]
+size = 38
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=14]
+size = 48
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=15]
+size = 48
+font_data = ExtResource( 2 )
+
+[node name="MenuNode" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+texture = ExtResource( 5 )
+expand = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="LoadButton" type="Button" parent="."]
+margin_left = 384.0
+margin_top = 256.0
+margin_right = 640.0
+margin_bottom = 320.0
+custom_fonts/font = SubResource( 1 )
+text = "Загрузить"
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="ExitButton" type="Button" parent="."]
+margin_left = 384.0
+margin_top = 384.0
+margin_right = 640.0
+margin_bottom = 448.0
+custom_fonts/font = SubResource( 2 )
+text = "Выйти"
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_left = 64.0
+margin_top = 64.0
+margin_right = 960.0
+margin_bottom = 200.0
+custom_fonts/font = SubResource( 3 )
+text = "Игра Да"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="WindowDialog" type="WindowDialog" parent="."]
+margin_left = 64.0
+margin_top = 40.0
+margin_right = 960.0
+margin_bottom = 560.0
+custom_styles/panel = SubResource( 4 )
+custom_constants/close_h_ofs = 9999
+custom_constants/scaleborder_size = 9999
+custom_constants/close_v_ofs = 9999
+custom_constants/title_height = 9999
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="WindowDialog"]
+margin_left = 64.0
+margin_top = 24.0
+margin_right = 832.0
+margin_bottom = 88.0
+custom_fonts/font = SubResource( 5 )
+text = "Сейвы"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Save1Control" type="Control" parent="WindowDialog"]
+margin_left = 64.0
+margin_top = 120.0
+margin_right = 832.0
+margin_bottom = 184.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="PanelContainer" type="PanelContainer" parent="WindowDialog/Save1Control"]
+margin_right = 768.0
+margin_bottom = 64.0
+custom_styles/panel = SubResource( 6 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="LoadSave1Button" type="Button" parent="WindowDialog/Save1Control"]
+margin_left = 576.0
+margin_top = 8.0
+margin_right = 752.0
+margin_bottom = 56.0
+custom_fonts/font = SubResource( 7 )
+text = "Загрузить"
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="WindowDialog/Save1Control"]
+margin_left = 16.0
+margin_top = 8.0
+margin_right = 304.0
+margin_bottom = 56.0
+custom_fonts/font = SubResource( 8 )
+text = "Сохранение №1"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="WindowDialog/Save1Control"]
+margin_left = 328.0
+margin_top = 8.0
+margin_right = 368.0
+margin_bottom = 56.0
+rect_pivot_offset = Vector2( 1, 1 )
+texture = ExtResource( 4 )
+expand = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="WindowDialog/Save1Control"]
+margin_left = 384.0
+margin_top = 8.0
+margin_right = 568.0
+margin_bottom = 64.0
+custom_fonts/font = SubResource( 9 )
+text = "100 Qth"
+align = 3
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Save2Control" type="Control" parent="WindowDialog"]
+margin_left = 64.0
+margin_top = 216.0
+margin_right = 832.0
+margin_bottom = 280.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="PanelContainer" type="PanelContainer" parent="WindowDialog/Save2Control"]
+margin_right = 768.0
+margin_bottom = 64.0
+custom_styles/panel = SubResource( 6 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="LoadSave2Button" type="Button" parent="WindowDialog/Save2Control"]
+margin_left = 576.0
+margin_top = 8.0
+margin_right = 752.0
+margin_bottom = 56.0
+custom_fonts/font = SubResource( 10 )
+text = "Загрузить"
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="WindowDialog/Save2Control"]
+margin_left = 16.0
+margin_top = 8.0
+margin_right = 304.0
+margin_bottom = 56.0
+custom_fonts/font = SubResource( 11 )
+text = "Сохранение №2"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect2" type="TextureRect" parent="WindowDialog/Save2Control"]
+margin_left = 328.0
+margin_top = 8.0
+margin_right = 368.0
+margin_bottom = 56.0
+rect_pivot_offset = Vector2( 1, 1 )
+texture = ExtResource( 4 )
+expand = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label3" type="Label" parent="WindowDialog/Save2Control"]
+margin_left = 384.0
+margin_top = 8.0
+margin_right = 568.0
+margin_bottom = 64.0
+custom_fonts/font = SubResource( 12 )
+text = "100 Qth"
+align = 3
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Save3Control" type="Control" parent="WindowDialog"]
+margin_left = 64.0
+margin_top = 312.0
+margin_right = 832.0
+margin_bottom = 376.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="PanelContainer" type="PanelContainer" parent="WindowDialog/Save3Control"]
+margin_top = -1.0
+margin_right = 768.0
+margin_bottom = 63.0
+custom_styles/panel = SubResource( 6 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="LoadSave3Button" type="Button" parent="WindowDialog/Save3Control"]
+margin_left = 576.0
+margin_top = 7.0
+margin_right = 752.0
+margin_bottom = 55.0
+custom_fonts/font = SubResource( 13 )
+text = "Загрузить"
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="WindowDialog/Save3Control"]
+margin_left = 16.0
+margin_top = 7.0
+margin_right = 304.0
+margin_bottom = 55.0
+custom_fonts/font = SubResource( 14 )
+text = "Сохранение №3"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect3" type="TextureRect" parent="WindowDialog/Save3Control"]
+margin_left = 328.0
+margin_top = 8.0
+margin_right = 368.0
+margin_bottom = 56.0
+rect_pivot_offset = Vector2( 1, 1 )
+texture = ExtResource( 4 )
+expand = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label4" type="Label" parent="WindowDialog/Save3Control"]
+margin_left = 384.0
+margin_top = 7.0
+margin_right = 568.0
+margin_bottom = 63.0
+custom_fonts/font = ExtResource( 1 )
+text = "100 Qth"
+align = 3
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="BackButton" type="Button" parent="WindowDialog"]
+margin_left = 320.0
+margin_top = 408.0
+margin_right = 576.0
+margin_bottom = 470.0
+custom_fonts/font = SubResource( 15 )
+text = "Назад"
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="LoadButton" to="." method="_on_LoadButton_pressed"]
+[connection signal="pressed" from="ExitButton" to="." method="_on_ExitButton_pressed"]
+[connection signal="pressed" from="WindowDialog/Save1Control/LoadSave1Button" to="." method="_on_LoadSave1Button_pressed"]
+[connection signal="pressed" from="WindowDialog/Save2Control/LoadSave2Button" to="." method="_on_LoadSave2Button_pressed"]
+[connection signal="pressed" from="WindowDialog/Save3Control/LoadSave3Button" to="." method="_on_LoadSave3Button_pressed"]
+[connection signal="pressed" from="WindowDialog/BackButton" to="." method="_on_BackButton_pressed"]
