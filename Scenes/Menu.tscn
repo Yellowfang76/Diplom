@@ -192,6 +192,7 @@ margin_bottom = 56.0
 custom_fonts/font = SubResource( 8 )
 text = "Сохранение №1"
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -261,6 +262,7 @@ margin_bottom = 56.0
 custom_fonts/font = SubResource( 11 )
 text = "Сохранение №2"
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -331,6 +333,7 @@ margin_bottom = 55.0
 custom_fonts/font = SubResource( 14 )
 text = "Сохранение №3"
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
