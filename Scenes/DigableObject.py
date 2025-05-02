@@ -2,16 +2,16 @@ from godot import exposed, export
 from godot import *
 
 @exposed
-class DiggableObject(Area2D):
+class DigableObject(Area2D):
 	def _ready(self):
-		# Подключаем сигнал входа в область
-		self.connect("body_entered", self.on_body_entered)
+		# Подключаем сигнал таймера
+		if not self.get_node("Timer").is_connected("timeout", self, "_on_Timer_timeout"):
+			self.get_node("Timer").connect("timeout", self, "_on_Timer_timeout")
 
-	def on_dug(self):
-		# Уничтожаем объект при копании
+	def start_digging(self):
+		# Запускаем таймер для анимации разрушения
+		self.get_node("Timer").start()
+
+	def _on_Timer_timeout(self):
+		# Удаляем объект после завершения таймера
 		self.queue_free()
-
-	def on_body_entered(self, body):
-		# Проверяем, что вошедший объект — это игрок
-		if isinstance(body, Player):
-			print(f"Player entered the diggable area of {self.name}")

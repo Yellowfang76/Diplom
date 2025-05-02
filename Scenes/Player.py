@@ -3,83 +3,62 @@ from godot import *
 
 @exposed
 class Player(KinematicBody2D):
-	# Определяем константы
+	# Константы
 	Speed = 200.0
-	JumpVelocity = -500.0  # Максимальная скорость прыжка
-	Gravity = 800.0        # Гравитация (ускорение свободного падения)
-	JumpSmoothness = 1000.0  # Скорость изменения скорости при прыжке
-	DigRadius = 100.0      # Радиус копания
+	JumpVelocity = -500.0
+	Gravity = 800.0
+	JumpSmoothness = 1000.0
+	MaxJumpTime = 0.2  # Максимальное время усиления прыжка (в секундах)
+	FlightBoost = -300.0  # Дополнительная скорость полёта при нажатии Shift
 
 	def _ready(self):
-		# Направление "вверх"
 		self.Up = Vector2(0, -1)
-		self.velocity = Vector2()  # Текущая скорость персонажа
-		self.is_jumping = False    # Флаг для отслеживания состояния прыжка
+		self.velocity = Vector2()
+		self.is_jumping = False
+		self.jump_timer = 0.0  # Таймер для отслеживания времени усиления прыжка
+		# Получаем доступ к AnimatedSprite
+		self.animated_sprite = self.get_node("AnimatedSprite")
 
 	def _physics_process(self, delta):
 		# Управление движением по горизонтали
 		if Input.is_action_pressed("ui_right"):
 			self.velocity.x = self.Speed
+			self.animated_sprite.flip_h = False  # Не отражаем спрайт
+			self.animated_sprite.play("Run")  # Воспроизводим анимацию бега
 		elif Input.is_action_pressed("ui_left"):
 			self.velocity.x = -self.Speed
+			self.animated_sprite.flip_h = True  # Отражаем спрайт по горизонтали
+			self.animated_sprite.play("Run")  # Воспроизводим анимацию бега
 		else:
 			self.velocity.x = 0.0
+			self.animated_sprite.play("Idle")  # Воспроизводим анимацию покоя
 
-		# Добавляем гравитацию (если не на земле)
+		# Гравитация
 		if not self.is_on_floor():
 			self.velocity.y += self.Gravity * delta
-			self.is_jumping = True  # Персонаж находится в воздухе
+			self.is_jumping = True
 		else:
 			self.velocity.y = 0
-			self.is_jumping = False  # Персонаж на земле
+			self.is_jumping = False
+			self.jump_timer = 0.0  # Сбрасываем таймер при приземлении
 
-		# Проверяем, находится ли персонаж на земле, и обрабатываем прыжок
+		# Прыжок
 		if self.is_on_floor() and Input.is_action_just_pressed("ui_up"):
-			# Начинаем плавный прыжок
-			self.velocity.y = 0  # Обнуляем вертикальную скорость перед прыжком
+			self.velocity.y = self.JumpVelocity  # Начинаем прыжок
 			self.is_jumping = True
+			self.jump_timer = 0.0  # Сбрасываем таймер
 
-		# Если игрок продолжает удерживать клавишу прыжка, увеличиваем скорость
+		# Усиление прыжка
 		if self.is_jumping and Input.is_action_pressed("ui_up"):
-			self.velocity.y -= self.JumpSmoothness * delta
-			# Ограничиваем максимальную скорость прыжка
-			self.velocity.y = max(self.velocity.y, self.JumpVelocity)
+			self.jump_timer += delta  # Увеличиваем таймер
+			if self.jump_timer < self.MaxJumpTime:
+				# Усиливаем прыжок, если таймер не превышен
+				self.velocity.y -= self.JumpSmoothness * delta
+				self.velocity.y = max(self.velocity.y, self.JumpVelocity)
 
-		# Применяем движение с учетом направления "вверх"
+		# Полёт с Shift
+		if self.is_jumping and Input.is_action_pressed("ui_shift"):
+			self.velocity.y += self.FlightBoost * delta  # Добавляем дополнительную силу полёта
+
+		# Перемещение персонажа
 		self.velocity = self.move_and_slide(self.velocity, self.Up)
-
-		# Обработка копания
-		self.handle_digging()
-
-	def handle_digging(self):
-		# Проверяем нажатие левой кнопки мыши
-		if Input.is_action_just_pressed("ui_select"):
-			# Получаем позицию курсора
-			mouse_position = get_viewport().get_mouse_position()
-			world_position = self.get_global_mouse_position()
-
-			# Находим объекты в радиусе копания
-			objects_in_range = self.get_objects_in_dig_radius(world_position)
-
-			# Если найден объект под курсором
-			for obj in objects_in_range:
-				if obj.has_method("on_dug"):
-					obj.on_dug()
-					break
-
-	def get_global_mouse_position(self):
-		# Преобразуем позицию курсора в мировые координаты
-		viewport = self.get_viewport()
-		mouse_pos = viewport.get_mouse_position()
-		camera = self.get_viewport().get_camera()
-		return camera.get_global_transform().affine_inverse().xform(mouse_pos)
-
-	def get_objects_in_dig_radius(self, position):
-		# Находим все объекты в радиусе копания
-		objects = []
-		for body in self.get_world_2d().direct_space_state.intersect_point(
-			position, self.DigRadius
-		):
-			if body.collider.has_method("on_dug"):
-				objects.append(body.collider)
-		return objects
