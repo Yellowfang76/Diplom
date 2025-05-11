@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Scenes/Player.py" type="Script" id=1]
 [ext_resource path="res://Assets/Game/idle.png" type="Texture" id=2]
@@ -66,9 +66,6 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=14]
-extents = Vector2( 32, 32 )
-
-[sub_resource type="RectangleShape2D" id=15]
 extents = Vector2( 7.85399, 16 )
 
 [node name="Player" type="KinematicBody2D"]
@@ -82,18 +79,9 @@ animation = "Idle"
 frame = 2
 playing = true
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
-visible = false
-enabled = true
-cast_to = Vector2( 0, 24 )
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="RayCast2D"]
-shape = SubResource( 14 )
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2( -0.668482, 0 )
-shape = SubResource( 15 )
+shape = SubResource( 14 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true

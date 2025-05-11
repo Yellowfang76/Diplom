@@ -15,8 +15,15 @@ class Player(KinematicBody2D):
 		self.is_jumping = False
 		self.jump_timer = 0.0
 		self.animated_sprite = self.get_node("AnimatedSprite")
+		self.rays = {
+			"left": self.get_node("RayCast2DLeft"),
+			"right": self.get_node("RayCast2DRight"),
+			"up": self.get_node("RayCast2DUp"),
+			"down": self.get_node("RayCast2DDown"),
+		}
 
 	def _physics_process(self, delta):
+		# --- Передвижение ---
 		if Input.is_action_pressed("ui_right"):
 			self.velocity.x = self.Speed
 			self.animated_sprite.flip_h = False
@@ -48,3 +55,20 @@ class Player(KinematicBody2D):
 				self.velocity.y = max(self.velocity.y, self.JumpVelocity)
 
 		self.velocity = self.move_and_slide(self.velocity, self.Up)
+
+		# --- Копание ---
+		if Input.is_action_just_pressed("ui_select"):
+			for direction, ray in self.rays.items():
+				ray.force_raycast_update()
+				if ray.is_colliding():
+					collider = ray.get_collider()
+					print("Collided with:", collider.name)
+					print("Type of collider:", type(collider))
+		
+					node = collider
+					while node:
+						if hasattr(node, "dig") and callable(node.dig):
+							print("Found dig() in:", node.name)
+							node.dig()
+							break
+						node = node.get_parent()
