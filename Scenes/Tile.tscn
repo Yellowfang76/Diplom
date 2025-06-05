@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Assets/Game/ground4.png" type="Texture" id=1]
+[ext_resource path="res://Scenes/Tile.py" type="Script" id=2]
+[ext_resource path="res://Assets/Game/ground3.png" type="Texture" id=3]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "Mining",
+"speed": 3.0
+}, {
+"frames": [ ExtResource( 3 ) ],
+"loop": false,
+"name": "Idle",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 8, 8 )
+
+[node name="DigableObject" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "Idle"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource( 2 )
+
+[node name="Button" type="Button" parent="StaticBody2D"]
+margin_left = -8.0
+margin_top = -8.0
+margin_right = 1.59999e+06
+margin_bottom = 1.59999e+06
+rect_scale = Vector2( 1e-05, 1e-05 )
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_animation_finished"]
+[connection signal="pressed" from="StaticBody2D/Button" to="." method="_on_Button_pressed"]
