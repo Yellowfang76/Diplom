@@ -1,5 +1,4 @@
-from godot import exposed, export
-from godot import Node2D, AnimatedSprite, StaticBody2D, CollisionShape2D
+from godot import exposed, Node2D
 
 @exposed
 class Tile(Node2D):
@@ -12,4 +11,3 @@ class Tile(Node2D):
 
 	def _on_animation_finished(self):
 		self.queue_free()
-
