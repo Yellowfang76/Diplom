@@ -2,22 +2,21 @@ from godot import exposed, export, Node2D, Timer, Vector2, Input, ResourceLoader
 
 global Coin
 Coin = 0
-save_path = "res://save/Save/save.save"  # Фиксируем имя файла
+save_path = "res://save/Save/save.save"
 
 @exposed
 class Game(Node2D):
 	def _ready(self):
 		self.popup = self.get_node("CanvasLayer")
 		self.money_label = self.popup.get_node("MoneyLabel")
-		self.player = self.get_node("Player")  # Предположим, что игрок называется "Player"
+		self.player = self.get_node("Player")
 		Money = 'MONEY: ' + str(Coin)
 		self.money_label.set_text(Money)
 		
 		self.spawn_tiles()
 
-		# Создаем таймер для восстановления области
 		self.restore_timer = Timer.new()
-		self.restore_timer.set_wait_time(300)  # 5 минут = 300 секунд
+		self.restore_timer.set_wait_time(300)
 		self.restore_timer.set_one_shot(False)
 		self.restore_timer.connect("timeout", self, "_on_restore_timer_timeout")
 		self.add_child(self.restore_timer)
@@ -67,17 +66,12 @@ class Game(Node2D):
 			row_index += 1
 
 	def _on_restore_timer_timeout(self):
-		# Проверяем, находится ли игрок внутри области копания
 		player_pos = self.player.position
 		if self.is_player_in_mine_area(player_pos):
-			# Телепортируем игрока на заданные координаты
-			self.player.position = Vector2(-520, -304)
-
-		# Восстанавливаем область копания
+			self.player.position = Vector2(player_pos.x, 304)
 		self.spawn_tiles()
 
 	def is_player_in_mine_area(self, pos):
-		# Задаем границы области копания
 		min_x = 96
 		max_x = 480
 		min_y = 320

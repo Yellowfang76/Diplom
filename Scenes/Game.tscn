@@ -593,12 +593,12 @@ texture = ExtResource( 26 )
 
 [node name="MoneyLabel" type="Label" parent="CanvasLayer"]
 margin_left = 72.0
-margin_top = 8.0
+margin_top = 7.99998
 margin_right = 256.0
 margin_bottom = 56.0
 custom_fonts/font = SubResource( 19 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "MONEY: 300KKJ"
+text = "MONEY:"
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
