@@ -315,7 +315,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label4" type="Label" parent="Panel/Save3Control"]
+[node name="Save3CoinLabel" type="Label" parent="Panel/Save3Control"]
 margin_left = 384.0
 margin_top = 7.0
 margin_right = 568.0
@@ -387,7 +387,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label3" type="Label" parent="Panel/Save2Control"]
+[node name="Save2CoinLabel" type="Label" parent="Panel/Save2Control"]
 margin_left = 384.0
 margin_top = 8.0
 margin_right = 568.0
@@ -459,7 +459,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label2" type="Label" parent="Panel/Save1Control"]
+[node name="Save1CoinLabel" type="Label" parent="Panel/Save1Control"]
 margin_left = 384.0
 margin_top = 8.0
 margin_right = 568.0
