@@ -1,4 +1,5 @@
 {
-    "Coin": 10,
-    "DMG": 1
+    "Coin": 0,
+    "DMG": 1,
+    "DMGUpgradeCost": 10
 }

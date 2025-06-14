@@ -1,9 +1,10 @@
 from godot import exposed, Node2D, Timer, ResourceLoader, Vector2
 import json, os
 
+global Pause
+Pause = False
 SAVE_DIR = "save"
 CURRENT_SAVE_FILE = f"{SAVE_DIR}/CurrentSaveDir.json"
-
 
 @exposed
 class Game(Node2D):
@@ -18,9 +19,13 @@ class Game(Node2D):
 		self.popup = self.get_node("CanvasLayer")
 		self.money_label = self.popup.get_node("MoneyLabel")
 		self.dmg_label = self.popup.get_node("DMGLabel")
+		
+		self.UpdateMenuCanvasLayer = self.get_node("UpdateMenuCanvasLayer")
+		self.UpdateMenu = self.UpdateMenuCanvasLayer.get_node("UpdateMenu")
 
 		self._update_money_label()
 		self._update_dmg_label()
+		self._update_dmg_cost_label()
 
 		self.save_check_timer = Timer.new()
 		self.save_check_timer.set_wait_time(0.5)
@@ -51,32 +56,39 @@ class Game(Node2D):
 			return f"{SAVE_DIR}/Save1.json"
 
 	def _load_data(self):
-		"""Загружает данные из текущего файла сохранения"""
 		if not os.path.exists(self.current_save_path):
-			default_data = {"Coin": 0, "DMG": 1}
+			default_data = {"Coin": 0, "DMG": 1, "DMGUpgradeCost": 10}
 			self._save_data(default_data)
 			return default_data
-
+	
 		with open(self.current_save_path, "r") as f:
 			content = f.read().strip()
 			if not content:
-				default_data = {"Coin": 0, "DMG": 1}
+				default_data = {"Coin": 0, "DMG": 1, "DMGUpgradeCost": 10}
 				self._save_data(default_data)
 				return default_data
-
+	
 			try:
-				return json.loads(content)
+				data = json.loads(content)
+				data.setdefault("Coin", 0)
+				data.setdefault("DMG", 1)
+				data.setdefault("DMGUpgradeCost", 10)
+				return data
 			except json.JSONDecodeError:
 				print(f"[Ошибка] JSON повреждён в {self.current_save_path}, создаём дефолтные данные...")
-				default_data = {"Coin": 0, "DMG": 1}
+				default_data = {"Coin": 0, "DMG": 1, "DMGUpgradeCost": 10}
 				self._save_data(default_data)
 				return default_data
 
 	def _save_data(self, data=None):
-		"""Сохраняет данные в текущий файл"""
 		if data is None:
 			data = self.data
-
+	
+		# Гарантируем наличие всех нужных полей
+		data.setdefault("Coin", 0)
+		data.setdefault("DMG", 1)
+		data.setdefault("DMGUpgradeCost", 10)
+	
 		with open(self.current_save_path, "w") as f:
 			json.dump(data, f, indent=4)
 		print(f"[Сохранение] Данные записаны в {self.current_save_path}")
@@ -94,21 +106,35 @@ class Game(Node2D):
 		self._update_dmg_label()
 
 	def _check_save_file(self):
-		# Читаем файл снова, чтобы проверить на изменения
 		with open(self.current_save_path, "r") as f:
 			content = f.read().strip()
 			if not content:
 				return
-
+	
 			try:
 				new_data = json.loads(content)
 			except json.JSONDecodeError:
 				return
-
-			if new_data != self.data:
-				self.data = new_data
+	
+			# Добавляем недостающие поля
+			new_data.setdefault("Coin", 0)
+			new_data.setdefault("DMG", 1)
+			new_data.setdefault("DMGUpgradeCost", 10)
+	
+			# Сравниваем только те поля, которые могут быть изменены извне
+			if new_data.get("Coin") != self.data.get("Coin") or \
+			   new_data.get("DMG") != self.data.get("DMG") or \
+			   new_data.get("DMGUpgradeCost") != self.data.get("DMGUpgradeCost"):
+	
+				# Обновляем только нужные поля, а не весь self.data
+				self.data["Coin"] = new_data.get("Coin", self.data["Coin"])
+				self.data["DMG"] = new_data.get("DMG", self.data["DMG"])
+				self.data["DMGUpgradeCost"] = new_data.get("DMGUpgradeCost", self.data["DMGUpgradeCost"])
+	
 				self._update_money_label()
 				self._update_dmg_label()
+				self._update_dmg_cost_label()
+	
 				print("Обнаружено изменение в сохранении. MONEY и DMG обновлены.")
 
 	def spawn_tiles(self):
@@ -155,9 +181,14 @@ class Game(Node2D):
 			row_index += 1
 
 	def _on_restore_timer_timeout(self):
-		player_pos = self.player.position
+		player = self.get_node("Player")
+		if player is None:
+			print("Ошибка: Игрок не найден!")
+			return
+	
+		player_pos = player.position
 		if self.is_player_in_mine_area(player_pos):
-			self.player.position = Vector2(player_pos.x, 304)
+			player.position = Vector2(player_pos.x, 304)
 		self.spawn_tiles()
 
 	def is_player_in_mine_area(self, pos):
@@ -166,6 +197,54 @@ class Game(Node2D):
 		min_y = 320
 		max_y = 512
 		return min_x <= pos.x <= max_x and min_y <= pos.y <= max_y
+
+	def set_pause_state(self, paused):
+		self.set_process(not paused)
+		self.set_physics_process(not paused)
+		for child in self.get_children():
+			if hasattr(child, "set_process"):
+				child.set_process(not paused)
+			if hasattr(child, "set_physics_process"):
+				child.set_physics_process(not paused)
+
+	def _update_dmg_cost_label(self):
+		self.UpdateDMGButton = self.UpdateMenu.get_node("UpdateDMGButton")
+		self.DMGCostLabel = self.UpdateDMGButton.get_node("DMGCostLabel")
+		if self.DMGCostLabel:
+			self.DMGCostLabel.set_text(f"Стоимость: {self.data['DMGUpgradeCost']}")
+
+	def _on_UpgradeButton_pressed(self):
+		global Pause
+		Pause = True
+		self.get_tree().paused = True
+		self.set_pause_state(True)
+		self.UpdateMenu.show()
+
+	def _on_UpdateDMGButton_pressed(self):
+		cost = self.data.get("DMGUpgradeCost", 10)  # По умолчанию 10, если ключа нет
+		if self.data["Coin"] >= cost:
+			self.data["Coin"] -= cost
+			self.data["DMG"] += 1
+			self.data["DMGUpgradeCost"] = int(cost * 1.5)  # Увеличиваем цену
+	
+			# Явно вызываем сохранение
+			self._save_data()
+	
+			# Обновляем интерфейс
+			self._update_money_label()
+			self._update_dmg_label()
+			self._update_dmg_cost_label()
+	
+			print(f"[Улучшение] Урон увеличен до {self.data['DMG']}, следующее улучшение стоит {self.data['DMGUpgradeCost']}$")
+		else:
+			print("[Ошибка] Недостаточно денег для улучшения урона!")
+
+	def _on_ExitUpdateMenuButton_pressed(self):
+		global Pause
+		Pause = False
+		self.get_tree().paused = False
+		self.set_pause_state(False)
+		self.UpdateMenu.hide()
 
 	def _on_MineGuideButton_pressed(self):
 		guide = self.get_node("MineGuideButton")

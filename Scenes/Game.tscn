@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=2]
+[gd_scene load_steps=87 format=2]
 
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/Game/kanava2.png" type="Texture" id=2]
@@ -26,6 +26,7 @@
 [ext_resource path="res://Assets/ButtonPressed.png" type="Texture" id=24]
 [ext_resource path="res://Assets/Game/kirka.png" type="Texture" id=25]
 [ext_resource path="res://Assets/coin.png" type="Texture" id=26]
+[ext_resource path="res://Fonts/MenuFont.tres" type="DynamicFont" id=27]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
@@ -339,118 +340,186 @@ font_data = ExtResource( 4 )
 size = 32
 font_data = ExtResource( 4 )
 
-[sub_resource type="SegmentShape2D" id=20]
+[sub_resource type="StyleBoxTexture" id=20]
+texture = ExtResource( 22 )
+region_rect = Rect2( 0, 0, 320, 376 )
+
+[sub_resource type="DynamicFont" id=21]
+size = 32
+font_data = ExtResource( 4 )
+
+[sub_resource type="StyleBoxTexture" id=22]
+texture = ExtResource( 23 )
+region_rect = Rect2( 5.92261, 0, 240.243, 40 )
+
+[sub_resource type="StyleBoxTexture" id=23]
+texture = ExtResource( 24 )
+region_rect = Rect2( 5.77283, 0, 240.506, 40 )
+
+[sub_resource type="StyleBoxTexture" id=24]
+texture = ExtResource( 21 )
+region_rect = Rect2( 5.6434, 0, 240.512, 40 )
+
+[sub_resource type="DynamicFont" id=25]
+size = 24
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=26]
+size = 32
+font_data = ExtResource( 4 )
+
+[sub_resource type="StyleBoxTexture" id=27]
+texture = ExtResource( 22 )
+region_rect = Rect2( 0, 0, 320, 376 )
+
+[sub_resource type="StyleBoxTexture" id=28]
+texture = ExtResource( 23 )
+region_rect = Rect2( 6.01833, 0, 240.121, 40 )
+
+[sub_resource type="StyleBoxTexture" id=29]
+texture = ExtResource( 24 )
+region_rect = Rect2( 5.75816, 0, 240.507, 40 )
+
+[sub_resource type="StyleBoxTexture" id=30]
+texture = ExtResource( 21 )
+region_rect = Rect2( 5.70612, 0, 240.321, 40 )
+
+[sub_resource type="DynamicFont" id=31]
+size = 31
+font_data = ExtResource( 4 )
+
+[sub_resource type="StyleBoxTexture" id=32]
+texture = ExtResource( 23 )
+region_rect = Rect2( 5.81214, 0, 240.325, 40 )
+
+[sub_resource type="StyleBoxTexture" id=33]
+texture = ExtResource( 24 )
+region_rect = Rect2( 6.19768, 0, 239.971, 40 )
+
+[sub_resource type="StyleBoxTexture" id=34]
+texture = ExtResource( 21 )
+region_rect = Rect2( 5.77995, 0, 240.359, 40 )
+
+[sub_resource type="DynamicFont" id=35]
+size = 32
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=36]
+size = 30
+font_data = ExtResource( 4 )
+
+[sub_resource type="SegmentShape2D" id=37]
 b = Vector2( 0, 608 )
 
-[sub_resource type="SegmentShape2D" id=21]
+[sub_resource type="SegmentShape2D" id=38]
 b = Vector2( 1024, 0 )
 
-[sub_resource type="SegmentShape2D" id=22]
+[sub_resource type="SegmentShape2D" id=39]
 a = Vector2( 456, 680 )
 b = Vector2( 456, 72 )
 
-[sub_resource type="SegmentShape2D" id=23]
+[sub_resource type="SegmentShape2D" id=40]
 a = Vector2( 1024, 608 )
 b = Vector2( 0, 608 )
 
-[sub_resource type="StyleBoxFlat" id=24]
+[sub_resource type="StyleBoxFlat" id=41]
 bg_color = Color( 0.282353, 0.282353, 0.282353, 0.788235 )
 
-[sub_resource type="StyleBoxFlat" id=25]
+[sub_resource type="StyleBoxFlat" id=42]
 bg_color = Color( 0.282353, 0.282353, 0.282353, 0.788235 )
 
-[sub_resource type="StyleBoxFlat" id=26]
+[sub_resource type="StyleBoxFlat" id=43]
 bg_color = Color( 0.282353, 0.282353, 0.282353, 0.788235 )
 
-[sub_resource type="StyleBoxFlat" id=27]
+[sub_resource type="StyleBoxFlat" id=44]
 bg_color = Color( 0.282353, 0.282353, 0.282353, 0.788235 )
 
-[sub_resource type="StyleBoxFlat" id=28]
+[sub_resource type="StyleBoxFlat" id=45]
 bg_color = Color( 0.282353, 0.282353, 0.282353, 0.788235 )
 
-[sub_resource type="StyleBoxFlat" id=29]
-bg_color = Color( 0.282353, 0.282353, 0.282353, 0.788235 )
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-
-[sub_resource type="StyleBoxFlat" id=30]
+[sub_resource type="StyleBoxFlat" id=46]
 bg_color = Color( 0.282353, 0.282353, 0.282353, 0.788235 )
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[sub_resource type="StyleBoxFlat" id=31]
+[sub_resource type="StyleBoxFlat" id=47]
 bg_color = Color( 0.282353, 0.282353, 0.282353, 0.788235 )
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[sub_resource type="StyleBoxFlat" id=32]
+[sub_resource type="StyleBoxFlat" id=48]
 bg_color = Color( 0.282353, 0.282353, 0.282353, 0.788235 )
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[sub_resource type="StyleBoxFlat" id=33]
+[sub_resource type="StyleBoxFlat" id=49]
 bg_color = Color( 0.282353, 0.282353, 0.282353, 0.788235 )
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[sub_resource type="DynamicFont" id=34]
+[sub_resource type="StyleBoxFlat" id=50]
+bg_color = Color( 0.282353, 0.282353, 0.282353, 0.788235 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="DynamicFont" id=51]
 size = 15
 font_data = ExtResource( 4 )
 
-[sub_resource type="DynamicFont" id=35]
+[sub_resource type="DynamicFont" id=52]
 size = 15
 font_data = ExtResource( 4 )
 
-[sub_resource type="StyleBoxFlat" id=36]
+[sub_resource type="StyleBoxFlat" id=53]
 bg_color = Color( 0.282353, 0.282353, 0.282353, 0.788235 )
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[sub_resource type="StyleBoxFlat" id=37]
+[sub_resource type="StyleBoxFlat" id=54]
 bg_color = Color( 0.282353, 0.282353, 0.282353, 0.788235 )
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[sub_resource type="StyleBoxFlat" id=38]
+[sub_resource type="StyleBoxFlat" id=55]
 bg_color = Color( 0.282353, 0.282353, 0.282353, 0.788235 )
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[sub_resource type="StyleBoxFlat" id=39]
+[sub_resource type="StyleBoxFlat" id=56]
 bg_color = Color( 0.282353, 0.282353, 0.282353, 0.788235 )
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[sub_resource type="StyleBoxFlat" id=40]
+[sub_resource type="StyleBoxFlat" id=57]
 bg_color = Color( 0.282353, 0.282353, 0.282353, 0.788235 )
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[sub_resource type="DynamicFont" id=41]
+[sub_resource type="DynamicFont" id=58]
 size = 15
 font_data = ExtResource( 4 )
 
-[sub_resource type="DynamicFont" id=42]
+[sub_resource type="DynamicFont" id=59]
 size = 15
 font_data = ExtResource( 4 )
 
@@ -530,6 +599,7 @@ margin_right = 665.0
 margin_bottom = 505.0
 custom_styles/panel = SubResource( 5 )
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -558,7 +628,7 @@ custom_styles/hover = SubResource( 10 )
 custom_styles/pressed = SubResource( 11 )
 custom_styles/normal = SubResource( 12 )
 custom_fonts/font = SubResource( 13 )
-text = "Сохранить"
+text = "Главное меню"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -595,20 +665,30 @@ __meta__ = {
 position = Vector2( 244, 32 )
 scale = Vector2( 1.525, 0.170213 )
 texture = ExtResource( 22 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="DMGSprite" type="Sprite" parent="CanvasLayer"]
 position = Vector2( 304, 32 )
 scale = Vector2( 3.5, 3 )
 texture = ExtResource( 25 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="MoneySprite" type="Sprite" parent="CanvasLayer"]
 position = Vector2( 39.7963, 31.5851 )
 scale = Vector2( 3.02546, 2.94814 )
 texture = ExtResource( 26 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="MoneyLabel" type="Label" parent="CanvasLayer" groups=[
 "1",
 ]]
+pause_mode = 2
 margin_left = 72.0
 margin_top = 7.99998
 margin_right = 256.0
@@ -618,10 +698,12 @@ custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "MONEY:"
 valign = 1
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
 [node name="DMGLabel" type="Label" parent="CanvasLayer"]
+pause_mode = 2
 margin_left = 336.0
 margin_top = 8.0
 margin_right = 472.0
@@ -631,6 +713,178 @@ custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "DMG:"
 valign = 1
 __meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="UpdateMenuCanvasLayer" type="CanvasLayer" parent="."]
+pause_mode = 2
+
+[node name="UpdateMenu" type="Panel" parent="UpdateMenuCanvasLayer"]
+visible = false
+margin_left = 360.0
+margin_top = 136.0
+margin_right = 665.0
+margin_bottom = 504.0
+custom_styles/panel = SubResource( 20 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="UpdateMenuCanvasLayer/UpdateMenu"]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 288.0
+margin_bottom = 56.0
+custom_fonts/font = SubResource( 21 )
+text = "Улучшения персонажа"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Label2" type="Label" parent="UpdateMenuCanvasLayer/UpdateMenu"]
+margin_left = 16.0
+margin_top = 184.0
+margin_right = 288.0
+margin_bottom = 224.0
+custom_fonts/font = SubResource( 21 )
+text = "Скоро..."
+align = 1
+valign = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="UpdateDMGButton" type="Button" parent="UpdateMenuCanvasLayer/UpdateMenu"]
+margin_left = 24.0
+margin_top = 63.5888
+margin_right = 280.0
+margin_bottom = 127.589
+custom_styles/hover = SubResource( 22 )
+custom_styles/pressed = SubResource( 23 )
+custom_styles/normal = SubResource( 24 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Label" type="Label" parent="UpdateMenuCanvasLayer/UpdateMenu/UpdateDMGButton"]
+margin_left = 16.0
+margin_top = 7.58876
+margin_right = 240.0
+margin_bottom = 31.5888
+custom_fonts/font = SubResource( 25 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Улучшение урона"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="DMGCostLabel" type="Label" parent="UpdateMenuCanvasLayer/UpdateMenu/UpdateDMGButton"]
+margin_left = 16.0
+margin_top = 31.5887
+margin_right = 240.0
+margin_bottom = 59.5887
+custom_fonts/font = SubResource( 25 )
+text = "Стоимость: "
+align = 1
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="ExitButton" type="Button" parent="UpdateMenuCanvasLayer/UpdateMenu"]
+margin_left = 24.0
+margin_top = 289.0
+margin_right = 280.0
+margin_bottom = 336.0
+custom_styles/hover = SubResource( 22 )
+custom_styles/pressed = SubResource( 23 )
+custom_styles/normal = SubResource( 24 )
+custom_fonts/font = SubResource( 26 )
+text = "Назад"
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="EndGameCanvasLayer" type="CanvasLayer" parent="."]
+pause_mode = 2
+
+[node name="EndMenu" type="Panel" parent="EndGameCanvasLayer"]
+visible = false
+margin_left = 336.0
+margin_top = 136.0
+margin_right = 688.0
+margin_bottom = 505.0
+custom_styles/panel = SubResource( 27 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="NewGameButton" type="Button" parent="EndGameCanvasLayer/EndMenu"]
+margin_left = 40.0
+margin_top = 200.0
+margin_right = 312.0
+margin_bottom = 240.0
+custom_styles/hover = SubResource( 28 )
+custom_styles/pressed = SubResource( 29 )
+custom_styles/normal = SubResource( 30 )
+custom_fonts/font = SubResource( 31 )
+text = "Новая игра"
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="ExitButton" type="Button" parent="EndGameCanvasLayer/EndMenu"]
+margin_left = 40.0
+margin_top = 280.0
+margin_right = 312.0
+margin_bottom = 320.0
+custom_styles/hover = SubResource( 32 )
+custom_styles/pressed = SubResource( 33 )
+custom_styles/normal = SubResource( 34 )
+custom_fonts/font = SubResource( 35 )
+text = "Выйти"
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="EndGameCanvasLayer/EndMenu"]
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 336.0
+margin_bottom = 72.0
+custom_fonts/font = ExtResource( 27 )
+text = "Конец игры"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="EndGameCanvasLayer/EndMenu"]
+margin_left = 16.0
+margin_top = 88.0
+margin_right = 336.0
+margin_bottom = 153.0
+custom_fonts/font = SubResource( 36 )
+text = "Поздравляем!
+Вы получили 300 000 монет"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -640,32 +894,32 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-shape = SubResource( 20 )
+shape = SubResource( 37 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
-shape = SubResource( 21 )
+shape = SubResource( 38 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2( 568, -72 )
-shape = SubResource( 22 )
+shape = SubResource( 39 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
-shape = SubResource( 23 )
+shape = SubResource( 40 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 520, 305 )
+position = Vector2( 512, 304 )
 
 [node name="RayCast2DLeft" type="RayCast2D" parent="Player"]
 visible = false
@@ -705,17 +959,20 @@ __meta__ = {
 }
 
 [node name="TilesContainer" type="Node2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="UpgradeButton" type="Button" parent="."]
 margin_left = 848.0
 margin_top = 192.0
 margin_right = 960.0
 margin_bottom = 304.0
-custom_styles/hover = SubResource( 24 )
-custom_styles/pressed = SubResource( 25 )
-custom_styles/focus = SubResource( 26 )
-custom_styles/disabled = SubResource( 27 )
-custom_styles/normal = SubResource( 28 )
+custom_styles/hover = SubResource( 41 )
+custom_styles/pressed = SubResource( 42 )
+custom_styles/focus = SubResource( 43 )
+custom_styles/disabled = SubResource( 44 )
+custom_styles/normal = SubResource( 45 )
 __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false
@@ -727,11 +984,11 @@ margin_left = 416.0
 margin_top = 240.0
 margin_right = 592.0
 margin_bottom = 300.0
-custom_styles/hover = SubResource( 29 )
-custom_styles/pressed = SubResource( 30 )
-custom_styles/focus = SubResource( 31 )
-custom_styles/disabled = SubResource( 32 )
-custom_styles/normal = SubResource( 33 )
+custom_styles/hover = SubResource( 46 )
+custom_styles/pressed = SubResource( 47 )
+custom_styles/focus = SubResource( 48 )
+custom_styles/disabled = SubResource( 49 )
+custom_styles/normal = SubResource( 50 )
 __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false
@@ -741,7 +998,7 @@ __meta__ = {
 margin_left = 8.0
 margin_right = 168.0
 margin_bottom = 35.0
-custom_fonts/font = SubResource( 34 )
+custom_fonts/font = SubResource( 51 )
 text = "Нажмите слева на землю
 для получения монет"
 align = 1
@@ -756,7 +1013,7 @@ margin_left = 8.0
 margin_top = 40.0
 margin_right = 168.0
 margin_bottom = 56.0
-custom_fonts/font = SubResource( 35 )
+custom_fonts/font = SubResource( 52 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "*Нажмите чтобы скрыть*"
 align = 1
@@ -772,11 +1029,11 @@ margin_left = 744.0
 margin_top = 216.0
 margin_right = 944.0
 margin_bottom = 284.0
-custom_styles/hover = SubResource( 36 )
-custom_styles/pressed = SubResource( 37 )
-custom_styles/focus = SubResource( 38 )
-custom_styles/disabled = SubResource( 39 )
-custom_styles/normal = SubResource( 40 )
+custom_styles/hover = SubResource( 53 )
+custom_styles/pressed = SubResource( 54 )
+custom_styles/focus = SubResource( 55 )
+custom_styles/disabled = SubResource( 56 )
+custom_styles/normal = SubResource( 57 )
 __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false
@@ -786,7 +1043,7 @@ __meta__ = {
 margin_left = 8.0
 margin_right = 192.0
 margin_bottom = 48.0
-custom_fonts/font = SubResource( 41 )
+custom_fonts/font = SubResource( 58 )
 text = "Нажмите на дом(которого нет)
 для улучшения характеристик"
 align = 1
@@ -801,7 +1058,7 @@ margin_left = 8.0
 margin_top = 49.0
 margin_right = 192.0
 margin_bottom = 65.0
-custom_fonts/font = SubResource( 42 )
+custom_fonts/font = SubResource( 59 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "*Нажмите чтобы скрыть*"
 align = 1
@@ -812,6 +1069,9 @@ __meta__ = {
 [connection signal="pressed" from="CanvasLayer/PauseMenu/ContinueButton" to="CanvasLayer" method="_on_ContinueButton_pressed"]
 [connection signal="pressed" from="CanvasLayer/PauseMenu/SaveButton" to="CanvasLayer" method="_on_SaveButton_pressed"]
 [connection signal="pressed" from="CanvasLayer/PauseMenu/ExitButton" to="CanvasLayer" method="_on_ExitButton_pressed"]
+[connection signal="pressed" from="UpdateMenuCanvasLayer/UpdateMenu/UpdateDMGButton" to="." method="_on_UpdateDMGButton_pressed"]
+[connection signal="pressed" from="UpdateMenuCanvasLayer/UpdateMenu/ExitButton" to="." method="_on_ExitUpdateMenuButton_pressed"]
+[connection signal="pressed" from="EndGameCanvasLayer/EndMenu/ExitButton" to="." method="_on_ExitButton_pressed"]
 [connection signal="pressed" from="UpgradeButton" to="." method="_on_UpgradeButton_pressed"]
 [connection signal="pressed" from="MineGuideButton" to="." method="_on_MineGuideButton_pressed"]
 [connection signal="pressed" from="UpgradeGuideButton" to="." method="_on_UpgradeGuideButton_pressed"]

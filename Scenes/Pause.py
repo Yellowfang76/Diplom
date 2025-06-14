@@ -28,7 +28,7 @@ class CanvasLayer(CanvasLayer):
 		self.popup.hide()
 		
 	def _on_SaveButton_pressed(self):
-		pass
+		self.get_tree().change_scene("res://Scenes/Menu.tscn")
 		
 	def _on_ExitButton_pressed(self):
 		self.get_tree().quit()
