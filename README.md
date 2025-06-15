@@ -42,6 +42,8 @@ git clone https://github.com/Yellowfang76/Diplom.git
 
 ## Полезные ссылки
 
+Автор дизайна текстур под кодовым названием "ЕВА ГДЕ ТЕКСТУРЫ": [Ева Фантапранкова](https://t.me/fantaprankova) 
+
 Используемый игровой движок: [Godot Engine 3.2](https://godotengine.org/download/archive/3.2-stable/)
 
 Используемая библиотека: [PythonScript 0.50.0](https://godotengine.org/asset-library/asset/179) ([Репозиторий автора библиотеки](https://github.com/touilleMan/godot-python))
