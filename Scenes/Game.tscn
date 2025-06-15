@@ -979,7 +979,6 @@ __meta__ = {
 }
 
 [node name="MineGuideButton" type="Button" parent="."]
-visible = false
 margin_left = 416.0
 margin_top = 240.0
 margin_right = 592.0
@@ -999,7 +998,7 @@ margin_left = 8.0
 margin_right = 168.0
 margin_bottom = 35.0
 custom_fonts/font = SubResource( 51 )
-text = "Нажмите слева на землю
+text = "Нажмите на грунт слева
 для получения монет"
 align = 1
 valign = 1
@@ -1024,7 +1023,6 @@ __meta__ = {
 }
 
 [node name="UpgradeGuideButton" type="Button" parent="."]
-visible = false
 margin_left = 744.0
 margin_top = 216.0
 margin_right = 944.0
