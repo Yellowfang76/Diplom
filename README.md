@@ -28,7 +28,7 @@
 
 ### Windows
 
-1. Скачайте файл установки из последнего [релиза](https://github.com/Yellowfang76/Diplom/releases/tag/0.2)
+1. Скачайте файл установки из последнего [релиза](https://github.com/Yellowfang76/Diplom/releases/tag/0.3)
 2. Следуйте инструкциям установщика
 
 ### Linux
