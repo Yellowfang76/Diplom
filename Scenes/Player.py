@@ -14,6 +14,7 @@ class Player(KinematicBody2D):
 		self.velocity = Vector2()
 		self.is_jumping = False
 		self.jump_timer = 0.0
+		self.mining = False
 		self.animated_sprite = self.get_node("AnimatedSprite")
 		self.rays = {
 			"left": self.get_node("RayCast2DLeft"),
@@ -23,6 +24,18 @@ class Player(KinematicBody2D):
 		}
 
 	def _physics_process(self, delta):
+		if self.mining:
+			# Если в процессе копания, не двигаем персонажа
+			self.velocity.x = 0.0
+			if Input.is_action_just_released("ui_LMB"):
+				self.mining = False
+				# Возвращаем Idle или Run, в зависимости от движения
+				if self.velocity.x == 0:
+					self.animated_sprite.play("Idle")
+				else:
+					self.animated_sprite.play("Run")
+			return
+
 		if Input.is_action_pressed("ui_right"):
 			self.velocity.x = self.Speed
 			self.animated_sprite.flip_h = False
@@ -34,6 +47,22 @@ class Player(KinematicBody2D):
 		else:
 			self.velocity.x = 0.0
 			self.animated_sprite.play("Idle")
+
+		# ������ Проверка нажатия ЛКМ и направления клика
+		if Input.is_action_just_pressed("ui_LMB"):
+			mouse_pos = self.get_global_mouse_position()
+			player_pos = self.global_position
+
+			# Определяем сторону клика
+			if mouse_pos.x < player_pos.x:
+				# Клик слева → отразить спрайт
+				self.animated_sprite.flip_h = True
+			else:
+				# Клик справа → не отражать
+				self.animated_sprite.flip_h = False
+
+			self.animated_sprite.play("Mine")
+			self.mining = True  # Включаем режим копания
 
 		if not self.is_on_floor():
 			self.velocity.y += self.Gravity * delta

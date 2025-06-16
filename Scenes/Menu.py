@@ -23,7 +23,6 @@ class Menu(Node2D):
 		self.load_save_data()
 
 	def load_save_data(self):
-		# Загружаем данные из каждого файла сохранения
 		self._load_and_update_label(f"{SAVE_DIR}/Save1.json", self.Save1CoinLabel)
 		self._load_and_update_label(f"{SAVE_DIR}/Save2.json", self.Save2CoinLabel)
 		self._load_and_update_label(f"{SAVE_DIR}/Save3.json", self.Save3CoinLabel)

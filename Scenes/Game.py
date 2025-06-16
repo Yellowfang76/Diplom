@@ -83,8 +83,7 @@ class Game(Node2D):
 	def _save_data(self, data=None):
 		if data is None:
 			data = self.data
-	
-		# Гарантируем наличие всех нужных полей
+
 		data.setdefault("Coin", 0)
 		data.setdefault("DMG", 1)
 		data.setdefault("DMGUpgradeCost", 10)
@@ -115,18 +114,15 @@ class Game(Node2D):
 				new_data = json.loads(content)
 			except json.JSONDecodeError:
 				return
-	
-			# Добавляем недостающие поля
+
 			new_data.setdefault("Coin", 0)
 			new_data.setdefault("DMG", 1)
 			new_data.setdefault("DMGUpgradeCost", 10)
-	
-			# Сравниваем только те поля, которые могут быть изменены извне
+
 			if new_data.get("Coin") != self.data.get("Coin") or \
 			   new_data.get("DMG") != self.data.get("DMG") or \
 			   new_data.get("DMGUpgradeCost") != self.data.get("DMGUpgradeCost"):
-	
-				# Обновляем только нужные поля, а не весь self.data
+
 				self.data["Coin"] = new_data.get("Coin", self.data["Coin"])
 				self.data["DMG"] = new_data.get("DMG", self.data["DMG"])
 				self.data["DMGUpgradeCost"] = new_data.get("DMGUpgradeCost", self.data["DMGUpgradeCost"])
@@ -221,16 +217,14 @@ class Game(Node2D):
 		self.UpdateMenu.show()
 
 	def _on_UpdateDMGButton_pressed(self):
-		cost = self.data.get("DMGUpgradeCost", 10)  # По умолчанию 10, если ключа нет
+		cost = self.data.get("DMGUpgradeCost", 10)
 		if self.data["Coin"] >= cost:
 			self.data["Coin"] -= cost
 			self.data["DMG"] += 1
-			self.data["DMGUpgradeCost"] = int(cost * 1.5)  # Увеличиваем цену
-	
-			# Явно вызываем сохранение
+			self.data["DMGUpgradeCost"] = int(cost * 1.5)
+
 			self._save_data()
-	
-			# Обновляем интерфейс
+
 			self._update_money_label()
 			self._update_dmg_label()
 			self._update_dmg_cost_label()

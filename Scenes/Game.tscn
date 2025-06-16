@@ -1,4 +1,4 @@
-[gd_scene load_steps=87 format=2]
+[gd_scene load_steps=88 format=2]
 
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/Game/kanava2.png" type="Texture" id=2]
@@ -27,6 +27,7 @@
 [ext_resource path="res://Assets/Game/kirka.png" type="Texture" id=25]
 [ext_resource path="res://Assets/coin.png" type="Texture" id=26]
 [ext_resource path="res://Fonts/MenuFont.tres" type="DynamicFont" id=27]
+[ext_resource path="res://Assets/Game/domic.png" type="Texture" id=28]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
@@ -422,20 +423,25 @@ b = Vector2( 456, 72 )
 a = Vector2( 1024, 608 )
 b = Vector2( 0, 608 )
 
-[sub_resource type="StyleBoxFlat" id=41]
-bg_color = Color( 0.282353, 0.282353, 0.282353, 0.788235 )
+[sub_resource type="StyleBoxTexture" id=60]
+texture = ExtResource( 28 )
+region_rect = Rect2( 0, 0, 74, 58 )
 
-[sub_resource type="StyleBoxFlat" id=42]
-bg_color = Color( 0.282353, 0.282353, 0.282353, 0.788235 )
+[sub_resource type="StyleBoxTexture" id=61]
+texture = ExtResource( 28 )
+region_rect = Rect2( 0, 0, 74, 58 )
 
-[sub_resource type="StyleBoxFlat" id=43]
-bg_color = Color( 0.282353, 0.282353, 0.282353, 0.788235 )
+[sub_resource type="StyleBoxTexture" id=62]
+texture = ExtResource( 28 )
+region_rect = Rect2( 0, 0, 74, 58 )
 
-[sub_resource type="StyleBoxFlat" id=44]
-bg_color = Color( 0.282353, 0.282353, 0.282353, 0.788235 )
+[sub_resource type="StyleBoxTexture" id=63]
+texture = ExtResource( 28 )
+region_rect = Rect2( 0, 0, 74, 58 )
 
-[sub_resource type="StyleBoxFlat" id=45]
-bg_color = Color( 0.282353, 0.282353, 0.282353, 0.788235 )
+[sub_resource type="StyleBoxTexture" id=64]
+texture = ExtResource( 28 )
+region_rect = Rect2( 0, 0, 74, 58 )
 
 [sub_resource type="StyleBoxFlat" id=46]
 bg_color = Color( 0.282353, 0.282353, 0.282353, 0.788235 )
@@ -918,8 +924,28 @@ __meta__ = {
 "_edit_lock_": true
 }
 
+[node name="TilesContainer" type="Node2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="UpgradeButton" type="Button" parent="."]
+margin_left = 848.0
+margin_top = 192.0
+margin_right = 960.0
+margin_bottom = 304.0
+custom_styles/hover = SubResource( 60 )
+custom_styles/pressed = SubResource( 61 )
+custom_styles/focus = SubResource( 62 )
+custom_styles/disabled = SubResource( 63 )
+custom_styles/normal = SubResource( 64 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 512, 304 )
+position = Vector2( 520, 304 )
 
 [node name="RayCast2DLeft" type="RayCast2D" parent="Player"]
 visible = false
@@ -956,26 +982,6 @@ enabled = true
 cast_to = Vector2( 0, 16 )
 __meta__ = {
 "_edit_lock_": true
-}
-
-[node name="TilesContainer" type="Node2D" parent="."]
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="UpgradeButton" type="Button" parent="."]
-margin_left = 848.0
-margin_top = 192.0
-margin_right = 960.0
-margin_bottom = 304.0
-custom_styles/hover = SubResource( 41 )
-custom_styles/pressed = SubResource( 42 )
-custom_styles/focus = SubResource( 43 )
-custom_styles/disabled = SubResource( 44 )
-custom_styles/normal = SubResource( 45 )
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
 }
 
 [node name="MineGuideButton" type="Button" parent="."]
@@ -1042,7 +1048,7 @@ margin_left = 8.0
 margin_right = 192.0
 margin_bottom = 48.0
 custom_fonts/font = SubResource( 58 )
-text = "Нажмите на дом(которого нет)
+text = "Нажмите на дом
 для улучшения характеристик"
 align = 1
 valign = 1
