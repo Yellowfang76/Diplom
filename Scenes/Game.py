@@ -57,7 +57,7 @@ class Game(Node2D):
 
 	def _load_data(self):
 		if not os.path.exists(self.current_save_path):
-			# ✅ Добавляем все необходимые поля
+
 			default_data = {
 				"Coin": 0,
 				"DMG": 1,
@@ -83,7 +83,6 @@ class Game(Node2D):
 	
 			try:
 				data = json.loads(content)
-				# ✅ Устанавливаем значения по умолчанию для всех полей
 				data.setdefault("Coin", 0)
 				data.setdefault("DMG", 1)
 				data.setdefault("DMGUpgradeCost", 10)
@@ -105,8 +104,7 @@ class Game(Node2D):
 	def _save_data(self, data=None):
 		if data is None:
 			data = self.data
-	
-		# ✅ Гарантируем наличие всех полей перед записью
+
 		data.setdefault("Coin", 0)
 		data.setdefault("DMG", 1)
 		data.setdefault("DMGUpgradeCost", 10)
@@ -140,7 +138,6 @@ class Game(Node2D):
 			except json.JSONDecodeError:
 				return
 	
-			# ✅ Добавляем новые поля в проверку
 			new_data.setdefault("Coin", 0)
 			new_data.setdefault("DMG", 1)
 			new_data.setdefault("DMGUpgradeCost", 10)

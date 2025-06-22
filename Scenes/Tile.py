@@ -16,9 +16,8 @@ class Tile(Node2D):
 		self.Mining_Block = self.static_body.get_node("Button")
 		self.mining_animation_playing = False
 
-		# Применяем бонус прочности из сохранения
 		hp_bonus = self.data.get("HPBonus", 0)
-		self.HP = 5 + hp_bonus  # Базовые 5 HP + бонус
+		self.HP = 5 + hp_bonus
 
 	def _on_Button_pressed(self):
 		if self.HP > 0:
@@ -29,8 +28,7 @@ class Tile(Node2D):
 	def _on_animation_finished(self):
 		if self.mining_animation_playing:
 			if self.animated_sprite.frame == self.animated_sprite.frames.get_frame_count("Mining") - 1:
-				
-				# ������ Проверяем, не изменился ли файл сохранения
+
 				self._check_save_file()
 
 				dmg = self.data.get("DMG", 1)
@@ -38,12 +36,10 @@ class Tile(Node2D):
 
 				if self.HP <= 0:
 					self.data["Coin"] = self.data.get("Coin", 0) + 1
-					
-					# Увеличиваем счётчик сломанных блоков
+
 					self.data["BrokenBlocks"] = self.data.get("BrokenBlocks", 0) + 1
 					broken_blocks = self.data["BrokenBlocks"]
 
-					# Каждые 100 блоков — добавляем +1 к бонусу прочности
 					if broken_blocks % 100 == 0 and broken_blocks != 0:
 						self.data["HPBonus"] = self.data.get("HPBonus", 0) + 1
 						print(f"[INFO] Все блоки получают +1 HP! Текущий бонус: {self.data['HPBonus']}")
@@ -55,8 +51,6 @@ class Tile(Node2D):
 			self.mining_animation_playing = False
 		self.Mining_Block.disabled = False
 
-	# --- Ниже остаются методы без изменений, но с добавлениями по умолчанию ---
-	
 	def _get_current_save_file(self):
 		try:
 			if not os.path.exists(CURRENT_SAVE_FILE):
