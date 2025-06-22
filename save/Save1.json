@@ -1,5 +1,8 @@
 {
-    "Coin": 22,
-    "DMG": 5,
-    "DMGUpgradeCost": 49
+    "Coin": 14,
+    "DMG": 1,
+    "DMGUpgradeCost": 15,
+    "HP": 0,
+    "BrokenBlocks": 0,
+    "HPBonus": 0
 }

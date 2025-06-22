@@ -57,36 +57,61 @@ class Game(Node2D):
 
 	def _load_data(self):
 		if not os.path.exists(self.current_save_path):
-			default_data = {"Coin": 0, "DMG": 1, "DMGUpgradeCost": 10}
+			# ✅ Добавляем все необходимые поля
+			default_data = {
+				"Coin": 0,
+				"DMG": 1,
+				"DMGUpgradeCost": 10,
+				"BrokenBlocks": 0,
+				"HPBonus": 0
+			}
 			self._save_data(default_data)
 			return default_data
 	
 		with open(self.current_save_path, "r") as f:
 			content = f.read().strip()
 			if not content:
-				default_data = {"Coin": 0, "DMG": 1, "DMGUpgradeCost": 10}
+				default_data = {
+					"Coin": 0,
+					"DMG": 1,
+					"DMGUpgradeCost": 10,
+					"BrokenBlocks": 0,
+					"HPBonus": 0
+				}
 				self._save_data(default_data)
 				return default_data
 	
 			try:
 				data = json.loads(content)
+				# ✅ Устанавливаем значения по умолчанию для всех полей
 				data.setdefault("Coin", 0)
 				data.setdefault("DMG", 1)
 				data.setdefault("DMGUpgradeCost", 10)
+				data.setdefault("BrokenBlocks", 0)
+				data.setdefault("HPBonus", 0)
 				return data
 			except json.JSONDecodeError:
 				print(f"[Ошибка] JSON повреждён в {self.current_save_path}, создаём дефолтные данные...")
-				default_data = {"Coin": 0, "DMG": 1, "DMGUpgradeCost": 10}
+				default_data = {
+					"Coin": 0,
+					"DMG": 1,
+					"DMGUpgradeCost": 10,
+					"BrokenBlocks": 0,
+					"HPBonus": 0
+				}
 				self._save_data(default_data)
 				return default_data
 
 	def _save_data(self, data=None):
 		if data is None:
 			data = self.data
-
+	
+		# ✅ Гарантируем наличие всех полей перед записью
 		data.setdefault("Coin", 0)
 		data.setdefault("DMG", 1)
 		data.setdefault("DMGUpgradeCost", 10)
+		data.setdefault("BrokenBlocks", 0)
+		data.setdefault("HPBonus", 0)
 	
 		with open(self.current_save_path, "w") as f:
 			json.dump(data, f, indent=4)
@@ -114,24 +139,31 @@ class Game(Node2D):
 				new_data = json.loads(content)
 			except json.JSONDecodeError:
 				return
-
+	
+			# ✅ Добавляем новые поля в проверку
 			new_data.setdefault("Coin", 0)
 			new_data.setdefault("DMG", 1)
 			new_data.setdefault("DMGUpgradeCost", 10)
-
-			if new_data.get("Coin") != self.data.get("Coin") or \
-			   new_data.get("DMG") != self.data.get("DMG") or \
-			   new_data.get("DMGUpgradeCost") != self.data.get("DMGUpgradeCost"):
-
+			new_data.setdefault("BrokenBlocks", 0)
+			new_data.setdefault("HPBonus", 0)
+	
+			if (new_data.get("Coin") != self.data.get("Coin") or
+				new_data.get("DMG") != self.data.get("DMG") or
+				new_data.get("DMGUpgradeCost") != self.data.get("DMGUpgradeCost") or
+				new_data.get("BrokenBlocks") != self.data.get("BrokenBlocks") or
+				new_data.get("HPBonus") != self.data.get("HPBonus")):
+	
 				self.data["Coin"] = new_data.get("Coin", self.data["Coin"])
 				self.data["DMG"] = new_data.get("DMG", self.data["DMG"])
 				self.data["DMGUpgradeCost"] = new_data.get("DMGUpgradeCost", self.data["DMGUpgradeCost"])
+				self.data["BrokenBlocks"] = new_data.get("BrokenBlocks", self.data["BrokenBlocks"])
+				self.data["HPBonus"] = new_data.get("HPBonus", self.data["HPBonus"])
 	
 				self._update_money_label()
 				self._update_dmg_label()
 				self._update_dmg_cost_label()
 	
-				print("Обнаружено изменение в сохранении. MONEY и DMG обновлены.")
+				print("Обнаружено изменение в сохранении. Все данные обновлены.")
 
 	def spawn_tiles(self):
 		start_x = 104
@@ -222,13 +254,10 @@ class Game(Node2D):
 			self.data["Coin"] -= cost
 			self.data["DMG"] += 1
 			self.data["DMGUpgradeCost"] = int(cost * 1.5)
-
 			self._save_data()
-
 			self._update_money_label()
 			self._update_dmg_label()
 			self._update_dmg_cost_label()
-	
 			print(f"[Улучшение] Урон увеличен до {self.data['DMG']}, следующее улучшение стоит {self.data['DMGUpgradeCost']}$")
 		else:
 			print("[Ошибка] Недостаточно денег для улучшения урона!")

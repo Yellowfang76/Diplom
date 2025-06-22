@@ -15,7 +15,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Mine"
+config/name="Приключения археолога"
 run/main_scene="res://Scenes/Menu.tscn"
 boot_splash/use_filter=false
 config/icon="res://icon.png"
